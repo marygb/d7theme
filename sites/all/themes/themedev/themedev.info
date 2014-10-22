@@ -1,0 +1,21 @@
+name = Theme Development
+description = First practice them in Drupal Tutor Themes class.
+core = 7.x
+
+stylesheets[all][] = css/layout.css
+stylesheets[all][] = css/style.css
+scripts[] = js/fool.min.js
+//scripts[] = js/themedev.js
+
+regions[super_header] = Super Header
+
+regions[header] = Header
+regions[help] = Help
+regions[highlighted] = Highlighted
+
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar_second
+
+regions[postscript] = Postscript
+regions[footer] = Footer
