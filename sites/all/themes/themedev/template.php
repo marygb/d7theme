@@ -12,16 +12,19 @@ function themedev_node_recent_content($variables) {
   $node = $variables['node'];
 
   $output = '<div class="node-title">';
-  $output .= "TESTING" .l($node->title, 'node/' . $node->nid);
+  $output .= l($node->title, 'node/' . $node->nid);
   $output .= theme('mark', array('type' => node_mark($node->nid, $node->changed)));
   $output .= '</div><div class="node-author">';
-  $output .= theme('username', array('account' => user_load($node->uid)));
+  $account = user_load($node->uid);
+  $output .= theme('username', array('account' => $account));
   $output .= '</div>';
-  $output .= '</div><div class="node-created">'; 
+  $output .= '<div class="node-created">';
   $output .= format_date($node->created);
   $output .= '</div>';
+
   return $output;
 }
+
 function themedev_mark($variables) {
   $type = $variables['type'];
   global $user;
@@ -53,6 +56,3 @@ function themedev_preprocess_html(&$variables) {
         drupal_add_css(drupal_get_path('theme', 'themedev') . '/css/superadmin.css');
     }
 } 
-function themedev_form_alter(&$form, &$form_state, $form_id){
-   
-}
