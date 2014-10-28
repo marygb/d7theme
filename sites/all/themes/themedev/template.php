@@ -51,8 +51,42 @@ function themedev_preprocess_node(&$variables) {
     $variables['submitted'] = t('Posted by !username on !datetime', array('!username' => $variables['name'], '!datetime' => $variables['date']));
   }
 }
-function themedev_preprocess_html(&$variables) {
-    if ($GLOBALS['user']->uid == 1) {
+function themedev_preprocess_html(&$variables){
+    if ($GLOBALS['user']->uid == 1){
         drupal_add_css(drupal_get_path('theme', 'themedev') . '/css/superadmin.css');
     }
 } 
+function themedev_form_alter(&$form, &$form_state,$form_id){
+    if(!empty($form['#node_edit_form'])){
+        unset($form['additional_settings']);
+        $form['options']['#collapsed']= FALSE;
+        $form['menu']['#collapsed']= FALSE;
+        $form['path']['#collapsed']= FALSE;
+        $form['comment_settings']['#acess'] = FALSE;
+        dpm($form_id);
+        dpm($form);
+    }
+}
+function themedev($existing, $type, $theme, $path){
+  return array(
+    'node_form' => array(
+      'render element' => 'form',
+      'template' => 'node-form',
+      'path' => drupal_get_path('theme', 'themedev') . '/templates',
+    )
+  );
+}
+function themedev_preprocess_node_form(&$variables){
+    $variables['buttons'] = drupal_render($variables['form']['actions']);
+    if(!empty($variables['form']['field_tags'])) {
+        $variables['tags'] = drupal_render($variables['form']['field_tags']);
+    }
+    $variables['right_side'] =drupal_render($variables['form']['options']);
+    $variables['right_side'] .=drupal_render($variables['form']['menu']);
+    $variables['right_side'] .=drupal_render($variables['form']['path']);
+    $variables['right_side'] .=drupal_render($variables['form']['comment_settings']);
+    $variables['right_side'] .=drupal_render($variables['form']['revision_information']);
+    $variables['right_side'] .=drupal_render($variables['form']['author']);
+    $variables['left_side'] = drupal_render_children($variables['form']); 
+    drupal_add_css(drupal_get_path('theme', 'themedev') . '/css/node-form.css');
+}
