@@ -57,3 +57,20 @@ table tr th {
 .view-users-list tr.user-blocked {
 	background: #fcc;
 }       
+.node-article .group-left {
+    width: 250px;
+    word-wrap: break-word;
+}
+.node-article .group-right {
+    width: 670px;
+}
+.apple-on-it {
+    padding-top: 40px; 
+    background: url(../images/apple.gif) right top no-repeat;
+}
+.in-a-box {
+    padding: 10px;
+    background; #fff;
+    box-shadow 0 1px 3px #BBBBBB;
+}    
+    

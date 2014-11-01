@@ -56,7 +56,7 @@ function themedev_preprocess_html(&$variables){
         drupal_add_css(drupal_get_path('theme', 'themedev') . '/css/superadmin.css');
     }
 } 
-function themedev_form_alter(&$form, &$form_state,$form_id){
+/*function themedev_form_alter(&$form, &$form_state,$form_id){
     if(!empty($form['#node_edit_form'])){
         unset($form['additional_settings']);
         $form['options']['#collapsed']= FALSE;
@@ -89,4 +89,4 @@ function themedev_preprocess_node_form(&$variables){
     $variables['right_side'] .=drupal_render($variables['form']['author']);
     $variables['left_side'] = drupal_render_children($variables['form']); 
     drupal_add_css(drupal_get_path('theme', 'themedev') . '/css/node-form.css');
-}
+}*/
