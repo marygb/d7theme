@@ -48,3 +48,12 @@ table tr td,
 table tr th {
     padding: 4px 10px;
 }
+.view-users-list span.user-active {
+	color: green;
+}
+.view-users-list span.user-blocked {
+	color: red;
+}
+.view-users-list tr.user-blocked {
+	background: #fcc;
+}       
