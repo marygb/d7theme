@@ -50,6 +50,14 @@ function themedev_preprocess_node(&$variables) {
   if (variable_get('node_submitted_' . $node->type, TRUE)) {
     $variables['submitted'] = t('Posted by !username on !datetime', array('!username' => $variables['name'], '!datetime' => $variables['date']));
   }
+/*
+ * var_dump($variables);  exit;
+*/
+if (!empty($variables['preprocess_fields']) && in_array('comment_info', $variables['preprocess_fields'])) {
+    $comment_user = user_load($variables['last_comment_uid']);
+    $comment_username = theme('username', array('account' => $comment_user));
+    $variables['comment_info'] = t('Comment Count: @count, Last Comment By: !commenter', array('@count' => $variables['comment_count'], '!commenter' => $comment_username));
+}
 }
 function themedev_preprocess_html(&$variables){
     if ($GLOBALS['user']->uid == 1){
